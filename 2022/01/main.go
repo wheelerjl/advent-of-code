@@ -11,11 +11,11 @@ import (
 func main() {
 	log.Printf("%s", "Seasons Greetings!")
 	log.Println("")
-	top, top3 := GetElfWeights()
-	log.Printf("First: %d Second: %d", top, top3)
+	first, second := values()
+	log.Printf("First: %d Second: %d", first, second)
 }
 
-func GetElfWeights() (int, int) {
+func values() (int, int) {
 	input, _ := os.ReadFile("./data/source.txt")
 	firstSplit := strings.Split(string(input), "\n\n")
 

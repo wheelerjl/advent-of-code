@@ -42,11 +42,11 @@ func scores() (firstResult, secondResult int) {
 }
 
 func priorities() map[rune]int {
-	x := make(map[rune]int)
-	runes := []rune{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}
-	for i, value := range runes {
-		x[value] = i + 1
-		x[unicode.ToUpper(value)] = i + 27
+	out := make(map[rune]int)
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+	for i, value := range alphabet {
+		out[value] = i + 1
+		out[unicode.ToUpper(value)] = i + 27
 	}
-	return x
+	return out
 }

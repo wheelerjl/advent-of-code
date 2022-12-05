@@ -27,8 +27,8 @@ func scores() (first, second int) {
 	rows := strings.Split(string(input), "\n")
 	for _, row := range rows {
 		myThrow, theirThrow := throws(row)
-		first += getFirstScores(myThrow, theirThrow)
-		second += getSecondScores(theirThrow, myThrow)
+		first += firstScores(myThrow, theirThrow)
+		second += secondScores(theirThrow, myThrow)
 	}
 
 	return
@@ -58,7 +58,7 @@ func throws(input string) (mine, theirs int) {
 	return
 }
 
-func getFirstScores(myThrow, theirThrow int) (score int) {
+func firstScores(myThrow, theirThrow int) (score int) {
 	if myThrow == theirThrow {
 		score = myThrow + 3
 	} else if (myThrow == Rock) && (theirThrow == Scissors) ||
@@ -72,7 +72,7 @@ func getFirstScores(myThrow, theirThrow int) (score int) {
 	return
 }
 
-func getSecondScores(theirThrow, neededResult int) (score int) {
+func secondScores(theirThrow, neededResult int) (score int) {
 	if neededResult == Draw {
 		score = theirThrow + 3
 	} else if neededResult == Lose {

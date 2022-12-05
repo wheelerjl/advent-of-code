@@ -7,17 +7,6 @@ import (
 	"strings"
 )
 
-const example = `    
-    [D]
-[N] [C]
-[Z] [M] [P]
- 1   2   3
-move 1 from 2 to 1
-move 3 from 1 to 3
-move 2 from 2 to 1
-move 1 from 1 to 2
-`
-
 func main() {
 	log.Printf("%s", "Seasons Greetings!")
 	log.Println("")
@@ -28,7 +17,7 @@ func main() {
 func values() (firstResult, secondResult string) {
 	input, _ := os.ReadFile("./data/source.txt")
 
-	indexMap := getIndexStack()
+	indexMap := stackIndexes()
 
 	stackOne := make(map[int]string)
 	stackTwo := make(map[int]string)
@@ -73,7 +62,7 @@ func values() (firstResult, secondResult string) {
 	return
 }
 
-func getIndexStack() map[int]int {
+func stackIndexes() map[int]int {
 	out := make(map[int]int)
 	for _, value := range []int{1, 2, 3, 4, 5, 6, 7, 8, 9} {
 		if value == 1 {
