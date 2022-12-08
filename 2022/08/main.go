@@ -59,89 +59,63 @@ func values() (firstResult, secondResult int) {
 		for j := 0; j <= southBorder; j++ {
 			currentTree := forest[i][j]
 
-			alreadyCounted := false
-
 			// Am I bigger then everyone above me
+			countedSeen := false
 			biggestUp := true
-			viewedUp := 0
 			for k := i - 1; k >= 0; k-- {
 				checkingTree := forest[k][j]
 				if currentTree <= checkingTree {
 					biggestUp = false
 					break
-				} else {
-					viewedUp += 1
 				}
 			}
-			if biggestUp && !alreadyCounted {
+			if biggestUp && !countedSeen {
+				countedSeen = true
 				firstResult += 1
-				alreadyCounted = true
 			}
 
 			// Am I bigger then everyone below me
 			biggestDown := true
-			viewedDown := 0
 			for k := i + 1; k <= southBorder; k++ {
 				checkingTree := forest[k][j]
 				if currentTree <= checkingTree {
 					biggestDown = false
 					break
-				} else {
-					viewedDown += 1
 				}
 			}
-			if biggestDown && !alreadyCounted {
+			if biggestDown && !countedSeen {
+				countedSeen = true
 				firstResult += 1
-				alreadyCounted = true
 			}
 
 			// Am I bigger then overyone left of me
 			biggestLeft := true
-			viewedLeft := 0
 			for k := j - 1; k >= 0; k-- {
 				checkingTree := forest[i][k]
 				if currentTree <= checkingTree {
 					biggestLeft = false
 					break
-				} else {
-					viewedLeft += 1
 				}
 			}
-			if biggestLeft && !alreadyCounted {
+			if biggestLeft && !countedSeen {
+				countedSeen = true
 				firstResult += 1
-				alreadyCounted = true
 			}
 
 			// Am I bigger then everyone right of me
 			biggestRight := true
-			viewedRight := 0
 			for k := j + 1; k <= eastBorder; k++ {
 				checkingTree := forest[i][k]
 				if currentTree <= checkingTree {
 					biggestRight = false
 					break
-				} else {
-					viewedRight += 1
 				}
 			}
-			if biggestRight && !alreadyCounted {
+			if biggestRight && !countedSeen {
+				countedSeen = true
 				firstResult += 1
-				alreadyCounted = true
-			}
-			scenicScore[i][j] = viewedDown * viewedLeft * viewedRight * viewedUp
-			if scenicScore[i][j] == 0 {
-				scenicScore[i][j] = 1
 			}
 		}
-	}
-
-	log.Print("")
-	for i := 0; i <= eastBorder; i++ {
-		row := ""
-		for j := 0; j <= southBorder; j++ {
-			row += fmt.Sprintf("%d", scenicScore[i][j])
-		}
-		log.Print(row)
 	}
 
 	return
