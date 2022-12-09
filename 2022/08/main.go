@@ -7,11 +7,6 @@ import (
 	"strings"
 )
 
-type Node struct {
-	Parent string
-	Size   int
-}
-
 func main() {
 	log.Printf("%s", "Seasons Greetings!")
 	first, second := values()
